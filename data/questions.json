@@ -1,0 +1,27 @@
+[
+  {
+    "question": "O câncer de próstata pode não apresentar sintomas no início.",
+    "answer": true,
+    "info": "Por isso os exames preventivos são fundamentais."
+  },
+  {
+    "question": "Somente idosos desenvolvem câncer de próstata.",
+    "answer": false,
+    "info": "Homens a partir dos 45 anos já devem se cuidar."
+  },
+  {
+    "question": "Histórico familiar aumenta o risco.",
+    "answer": true,
+    "info": "A genética é um fator importante."
+  },
+  {
+    "question": "Hábitos saudáveis ajudam na prevenção.",
+    "answer": true,
+    "info": "Alimentação e atividade física reduzem riscos."
+  },
+  {
+    "question": "Informação ajuda na prevenção.",
+    "answer": true,
+    "info": "Conhecimento salva vidas."
+  }
+]
