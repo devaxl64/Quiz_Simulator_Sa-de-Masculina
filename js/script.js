@@ -1,5 +1,5 @@
 let questions = [];
-let index = 0;
+let current = 0;
 let score = 0;
 
 fetch('data/questions.json')
@@ -7,14 +7,14 @@ fetch('data/questions.json')
   .then(data => questions = data);
 
 function show(id) {
-  ['home','quiz','feedback','loading','result'].forEach(s =>
-    document.getElementById(s).classList.add('d-none')
+  ['intro', 'quiz', 'feedback', 'result'].forEach(p =>
+    document.getElementById(p).classList.add('hidden')
   );
-  document.getElementById(id).classList.remove('d-none');
+  document.getElementById(id).classList.remove('hidden');
 }
 
-function startQuiz() {
-  index = 0;
+function startGame() {
+  current = 0;
   score = 0;
   loadQuestion();
   show('quiz');
@@ -22,51 +22,54 @@ function startQuiz() {
 
 function loadQuestion() {
   document.getElementById('question').innerText =
-    questions[index].question;
+    questions[current].question;
 }
 
-function answer(val) {
-  const correct = val === questions[index].answer;
+function answer(value) {
+  const q = questions[current];
+  const correct = value === q.answer;
+
   if (correct) score++;
 
-  document.getElementById('feedback').innerHTML = `
-    <h4 class="${correct ? 'text-success' : 'text-danger'}">
-      ${correct ? 'Resposta correta!' : 'Resposta incorreta'}
-    </h4>
-    <p>${questions[index].info}</p>
-    <button class="btn btn-primary mt-3" onclick="next()">Continuar</button>
-  `;
+  document.getElementById('feedback-title').innerText =
+    correct ? 'Você acertou!' : 'Você errou!';
+
+  document.getElementById('feedback-text').innerText =
+    q.info;
 
   show('feedback');
 }
 
 function next() {
-  index++;
-  if (index < questions.length) {
+  current++;
+  if (current < questions.length) {
     loadQuestion();
     show('quiz');
   } else {
-    show('loading');
-    setTimeout(showResult, 600);
+    showResult();
   }
 }
 
 function showResult() {
+  document.getElementById('score').innerText =
+    `Pontuação: ${score} / ${questions.length}`;
+
   let msg = '';
-  if (score <= 3) msg = 'Baixo desempenho. Informação salva vidas.';
-  else if (score <= 5) msg = 'Você passou, mas pode melhorar!';
-  else if (score <= 7) msg = 'Bom resultado!';
-  else if (score <= 9) msg = 'Excelente!';
-  else msg = 'Perfeito!';
+  if (score <= 3)
+    msg = 'Baixo desempenho. Informação é o primeiro passo.';
+  else if (score <= 5)
+    msg = 'Você passou, mas pode melhorar!';
+  else if (score <= 7)
+    msg = 'Bom resultado! Continue se cuidando.';
+  else if (score <= 9)
+    msg = 'Excelente desempenho!';
+  else
+    msg = 'Perfeito! Consciência total sobre a saúde do homem.';
 
-  document.getElementById('result').innerHTML = `
-    <h2 class="text-primary">Resultado Final</h2>
-    <p class="fs-4"><strong>${score}/10</strong></p>
-    <p>${msg}</p>
-    <button class="btn btn-outline-primary mt-3" onclick="show('home')">
-      Reiniciar
-    </button>
-  `;
-
+  document.getElementById('final-message').innerText = msg;
   show('result');
+}
+
+function restart() {
+  show('intro');
 }

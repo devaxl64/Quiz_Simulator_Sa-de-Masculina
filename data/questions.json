@@ -1,27 +1,52 @@
 [
   {
-    "question": "O câncer de próstata pode não apresentar sintomas no início.",
+    "question": "Cuidar da saúde do homem significa ir ao posto de saúde mesmo quando não está doente.",
     "answer": true,
-    "info": "Por isso os exames preventivos são fundamentais."
+    "info": "A prevenção e o acompanhamento regular são fundamentais."
   },
   {
-    "question": "Somente idosos desenvolvem câncer de próstata.",
+    "question": "Os homens devem procurar a Unidade Básica de Saúde apenas quando sentem dor ou estão muito doentes.",
     "answer": false,
-    "info": "Homens a partir dos 45 anos já devem se cuidar."
+    "info": "A UBS deve ser procurada também para prevenção."
   },
   {
-    "question": "Histórico familiar aumenta o risco.",
+    "question": "A saúde do homem inclui o cuidado com o corpo, a mente e a vida social.",
     "answer": true,
-    "info": "A genética é um fator importante."
+    "info": "Saúde envolve bem-estar físico, mental e social."
   },
   {
-    "question": "Hábitos saudáveis ajudam na prevenção.",
+    "question": "O uso de camisinha ajuda a prevenir infecções sexualmente transmissíveis (ISTs).",
     "answer": true,
-    "info": "Alimentação e atividade física reduzem riscos."
+    "info": "A camisinha é essencial na prevenção."
   },
   {
-    "question": "Informação ajuda na prevenção.",
+    "question": "O câncer de pênis pode estar relacionado à falta de higiene íntima.",
     "answer": true,
-    "info": "Conhecimento salva vidas."
+    "info": "A má higiene íntima aumenta o risco."
+  },
+  {
+    "question": "A vacina contra o HPV ajuda a proteger contra o câncer de pênis.",
+    "answer": true,
+    "info": "O HPV está associado a vários tipos de câncer."
+  },
+  {
+    "question": "Quando descoberto cedo, o câncer de pênis tem grandes chances de tratamento e cura.",
+    "answer": true,
+    "info": "O diagnóstico precoce salva vidas."
+  },
+  {
+    "question": "O acompanhamento regular no posto de saúde ajuda a prevenir doenças como pressão alta e diabetes.",
+    "answer": true,
+    "info": "Consultas regulares ajudam na prevenção."
+  },
+  {
+    "question": "A participação do homem no cuidado com a família também faz parte da saúde.",
+    "answer": true,
+    "info": "Saúde envolve relações familiares."
+  },
+  {
+    "question": "Prevenir acidentes e violências não tem relação com a saúde do homem.",
+    "answer": false,
+    "info": "A prevenção de acidentes também é cuidado com a saúde."
   }
 ]
