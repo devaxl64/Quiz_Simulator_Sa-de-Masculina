@@ -35,6 +35,7 @@ body {
 .panel {
   width: 100%;
   max-width: 420px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -56,9 +57,10 @@ body {
 }
 
 .title-box h3 {
-  width: 65%;
+  width: 55%;
   margin: 0;
   font-size: 1.8rem;
+  padding: 10px;
   color: var(--gold);
 }
 
@@ -72,6 +74,10 @@ body {
   right: 0;
   width: 160px;
   height: auto;
+}
+.logo {
+  width: 100%;
+  position: relative;
 }
 
 /* ================= PERGUNTA ================= */
@@ -89,7 +95,7 @@ body {
 }
 
 .question-box h3 {
-  width: 65%;
+  width: 55%;
   font-size: 1.1rem;
   line-height: 1.4;
 }
@@ -112,16 +118,20 @@ body {
   background: linear-gradient(145deg, #020617, #1e3a8a);
   border: 2px solid var(--gold);
   border-radius: 18px;
-  padding: 20px;
+  /* padding: 20px; */
   text-align: center;
 }
 
+.feedback h3,
 .feedback h2,
 .feedback p,
 #final-message {
-  width: 60%;
+  width: 55%;
   font-size: 1.1rem;
   line-height: 1.4;
+}
+.feedback p {
+  padding-bottom: 30px;
 }
 
 .feedback .doctor {
@@ -186,6 +196,21 @@ body {
 }
 
 .btn.next {
+  align-self: center;
+  width: 55%;
+  background: linear-gradient(var(--gold), #c0841a);
+  color: #000;
+}
+
+.feedback .btn.next {
+  position: absolute;
+  bottom: 6px;
+  padding: auto 70% 50px;
+  left: 20px;
+  /* width: 50px; */
+  height: auto;
+  
+  width: 45%;
   background: linear-gradient(var(--gold), #c0841a);
   color: #000;
 }
