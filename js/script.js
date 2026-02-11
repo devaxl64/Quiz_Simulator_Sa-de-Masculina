@@ -1,75 +1,57 @@
-let questions = [];
+const questions = [
+  { text: "Cuidar da saúde do homem significa ir ao posto mesmo sem estar doente.", answer: true },
+  { text: "Homens só devem procurar a UBS quando sentem dor.", answer: false },
+  { text: "A saúde do homem inclui corpo, mente e vida social.", answer: true },
+  { text: "O uso de camisinha ajuda a prevenir ISTs.", answer: true }
+];
+
 let current = 0;
 let score = 0;
 
-fetch('data/questions.json')
-  .then(r => r.json())
-  .then(data => questions = data);
-
-function show(id) {
-  ['intro', 'quiz', 'feedback', 'result'].forEach(p =>
-    document.getElementById(p).classList.add('hidden')
-  );
-  document.getElementById(id).classList.remove('hidden');
-}
-
-function startGame() {
-  current = 0;
-  score = 0;
+function startQuiz() {
+  showScreen("quiz");
   loadQuestion();
-  show('quiz');
 }
 
 function loadQuestion() {
-  document.getElementById('question').innerText =
-    questions[current].question;
+  document.getElementById("questionText").innerText = questions[current].text;
+  document.getElementById("doctorImg").src = "assets/doctor-normal.png";
 }
 
-function answer(value) {
-  const q = questions[current];
-  const correct = value === q.answer;
+function answer(choice) {
+  const correct = questions[current].answer === choice;
+  const doctor = document.getElementById("doctorImg");
 
-  if (correct) score++;
-
-  document.getElementById('feedback-title').innerText =
-    correct ? 'Você acertou!' : 'Você errou!';
-
-  document.getElementById('feedback-text').innerText =
-    q.info;
-
-  show('feedback');
-}
-
-function next() {
-  current++;
-  if (current < questions.length) {
-    loadQuestion();
-    show('quiz');
+  if (correct) {
+    score++;
+    doctor.src = "assets/doctor-happy.png";
   } else {
-    showResult();
+    doctor.src = "assets/doctor-sad.png";
   }
+
+  setTimeout(() => {
+    current++;
+    if (current < questions.length) {
+      loadQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, 1000);
 }
 
-function showResult() {
-  document.getElementById('score').innerText =
-    `Pontuação: ${score} / ${questions.length}`;
-
-  let msg = '';
-  if (score <= 3)
-    msg = 'Baixo desempenho. Informação é o primeiro passo.';
-  else if (score <= 5)
-    msg = 'Você passou, mas pode melhorar!';
-  else if (score <= 7)
-    msg = 'Bom resultado! Continue se cuidando.';
-  else if (score <= 9)
-    msg = 'Excelente desempenho!';
-  else
-    msg = 'Perfeito! Consciência total sobre a saúde do homem.';
-
-  document.getElementById('final-message').innerText = msg;
-  show('result');
+function finishQuiz() {
+  showScreen("end");
+  document.getElementById("scoreText").innerText =
+    `Você acertou ${score} de ${questions.length} perguntas!`;
 }
 
 function restart() {
-  show('intro');
+  current = 0;
+  score = 0;
+  showScreen("start");
+}
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
