@@ -65,26 +65,6 @@ function next() {
   }
 }
 
-// function showResult() {
-//   document.getElementById('score').innerText =
-//     `Pontuação: ${score} / ${questions.length}`;
-
-//   let msg = '';
-//   if (score <= 3)
-//     msg = 'Baixo desempenho. Informação é o primeiro passo.';
-//   else if (score <= 5)
-//     msg = 'Você passou, mas pode melhorar!';
-//   else if (score <= 7)
-//     msg = 'Bom resultado! Continue se cuidando.';
-//   else if (score <= 9)
-//     msg = 'Excelente desempenho!';
-//   else
-//     msg = 'Perfeito! Consciência total sobre a saúde do homem.';
-
-//   document.getElementById('final-message').innerText = msg;
-//   show('result');
-// }
-
 function showResult() {
   document.getElementById('score').innerText =
     `Pontuação: ${score} / ${questions.length}`;
@@ -116,5 +96,6 @@ function showResult() {
 
 
 function restart() {
+  setDoctor('doctor-normal.png');
   show('intro');
 }
