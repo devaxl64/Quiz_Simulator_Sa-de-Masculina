@@ -1,45 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
-  <title>Saúde do Homem - Quiz</title>
+  <title>Saúde do Homem • Novembro Azul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<div id="app">
+  <div class="screen">
 
-  <!-- TELA INICIAL -->
-  <section id="start" class="screen active">
-    <img src="assets/doctor-normal.png" class="doctor">
-    <h1>Saúde do Homem</h1>
-    <p>Teste seus conhecimentos e cuide melhor da sua saúde!</p>
-    <button onclick="startQuiz()">Começar Quiz</button>
-  </section>
+    <!-- ================= INTRO ================= -->
+    <div id="intro" class="panel">
+      <img src="assets/titulo.png" class="logo">
 
-  <!-- QUIZ -->
-  <section id="quiz" class="screen">
-    <img id="doctorImg" src="assets/doctor-normal.png" class="doctor">
+      <div class="title-box">
+        <h3>
+          Que tal um jogo para testarmos seus conhecimentos?
+        </h3>
 
-    <div class="question-box">
-      <h2 id="questionText"></h2>
+        <!-- DOUTOR INTRO (NÃO MUDA) -->
+        <img src="assets/doctor-normal.png" class="doctor" id="doctor-intro">
+      </div>
+
+      <button class="btn next" onclick="startGame()">
+        INICIAR
+      </button>
+    </div>
+
+    <!-- ================= QUIZ ================= -->
+    <div id="quiz" class="panel hidden">
+      <img src="assets/titulo.png" class="logo">
+
+      <div class="question-box">
+
+        <!-- TEXTO DA PERGUNTA -->
+        <h3 id="question-text"></h3>
+
+        <!-- DOUTOR DO QUIZ (MUDA NORMAL/HAPPY/SAD) -->
+        <img src="assets/doctor-normal.png" class="doctor" id="doctor-quiz">
+      </div>
 
       <div class="buttons">
-        <button onclick="answer(true)">✔ Verdadeiro</button>
-        <button onclick="answer(false)">✖ Falso</button>
+        <button class="btn true" onclick="answer(true)">
+          <i class="fa-solid fa-thumbs-up"></i> VERDADEIRO
+        </button>
+
+        <button class="btn false" onclick="answer(false)">
+          <i class="fa-solid fa-thumbs-down"></i> FALSO
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- FINAL -->
-  <section id="end" class="screen">
-    <img src="assets/doctor-final.png" class="doctor">
-    <h2 id="scoreText"></h2>
-    <button onclick="restart()">Refazer Quiz</button>
-  </section>
+    <!-- ================= FEEDBACK ================= -->
+    <div id="feedback" class="panel hidden">
+      <img src="assets/titulo.png" class="logo">
 
-</div>
+      <div class="feedback">
+        <img src="assets/doctor-normal.png" class="doctor" id="doctor-quiz">
+        <h2 id="feedback-title"></h2>
+        <p id="feedback-text"></p>
 
-<script src="js/script.js"></script>
+        <button class="btn next" onclick="next()">
+          PRÓXIMO
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= RESULTADO FINAL ================= -->
+    <div id="result" class="panel hidden">
+      <img src="assets/titulo.png" class="logo">
+
+      <div class="feedback">
+
+        <!-- DOUTOR FINAL (MUDA FINAL OU SAD) -->
+        <img src="assets/doctor-normal.png" class="doctor" id="doctor-result">
+
+        <h2>RESULTADO FINAL</h2>
+        <p id="score"></p>
+        <p id="final-message"></p>
+
+        <button class="btn next" onclick="restart()">
+          REINICIAR
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>

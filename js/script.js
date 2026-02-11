@@ -1,57 +1,120 @@
-const questions = [
-  { text: "Cuidar da saúde do homem significa ir ao posto mesmo sem estar doente.", answer: true },
-  { text: "Homens só devem procurar a UBS quando sentem dor.", answer: false },
-  { text: "A saúde do homem inclui corpo, mente e vida social.", answer: true },
-  { text: "O uso de camisinha ajuda a prevenir ISTs.", answer: true }
-];
-
+let questions = [];
 let current = 0;
 let score = 0;
 
-function startQuiz() {
-  showScreen("quiz");
+fetch('data/questions.json')
+  .then(r => r.json())
+  .then(data => questions = data);
+
+function setDoctor(imageName) {
+  document.querySelectorAll('.doctor').forEach(img => {
+    img.src = `assets/${imageName}`;
+  });
+}
+
+function show(id) {
+  ['intro', 'quiz', 'feedback', 'result'].forEach(p =>
+    document.getElementById(p).classList.add('hidden')
+  );
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function startGame() {
+  current = 0;
+  score = 0;
   loadQuestion();
+  show('quiz');
 }
 
 function loadQuestion() {
-  document.getElementById("questionText").innerText = questions[current].text;
-  document.getElementById("doctorImg").src = "assets/doctor-normal.png";
+  document.getElementById('question-text').innerText =
+    questions[current].question;
+
+  setDoctor('doctor-normal.png');
 }
 
-function answer(choice) {
-  const correct = questions[current].answer === choice;
-  const doctor = document.getElementById("doctorImg");
+
+function answer(value) {
+  const q = questions[current];
+  const correct = value === q.answer;
 
   if (correct) {
     score++;
-    doctor.src = "assets/doctor-happy.png";
+    setDoctor('doctor-happy.png');
   } else {
-    doctor.src = "assets/doctor-sad.png";
+    setDoctor('doctor-sad.png');
   }
 
-  setTimeout(() => {
-    current++;
-    if (current < questions.length) {
-      loadQuestion();
-    } else {
-      finishQuiz();
-    }
-  }, 1000);
+  document.getElementById('feedback-title').innerText =
+    correct ? 'Você acertou!' : 'Você errou!';
+
+  document.getElementById('feedback-text').innerText =
+    q.info;
+
+  show('feedback');
 }
 
-function finishQuiz() {
-  showScreen("end");
-  document.getElementById("scoreText").innerText =
-    `Você acertou ${score} de ${questions.length} perguntas!`;
+
+function next() {
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+    show('quiz');
+  } else {
+    showResult();
+  }
 }
+
+// function showResult() {
+//   document.getElementById('score').innerText =
+//     `Pontuação: ${score} / ${questions.length}`;
+
+//   let msg = '';
+//   if (score <= 3)
+//     msg = 'Baixo desempenho. Informação é o primeiro passo.';
+//   else if (score <= 5)
+//     msg = 'Você passou, mas pode melhorar!';
+//   else if (score <= 7)
+//     msg = 'Bom resultado! Continue se cuidando.';
+//   else if (score <= 9)
+//     msg = 'Excelente desempenho!';
+//   else
+//     msg = 'Perfeito! Consciência total sobre a saúde do homem.';
+
+//   document.getElementById('final-message').innerText = msg;
+//   show('result');
+// }
+
+function showResult() {
+  document.getElementById('score').innerText =
+    `Pontuação: ${score} / ${questions.length}`;
+
+  let msg = '';
+
+  if (score <= 3)
+    msg = 'Baixo desempenho. Informação é o primeiro passo.';
+  else if (score <= 5)
+    msg = 'Você passou, mas pode melhorar!';
+  else if (score <= 7)
+    msg = 'Bom resultado! Continue se cuidando.';
+  else if (score <= 9)
+    msg = 'Excelente desempenho!';
+  else
+    msg = 'Perfeito! Consciência total sobre a saúde do homem.';
+
+  document.getElementById('final-message').innerText = msg;
+
+  // 👇 ALTERAÇÃO DO DOUTOR FINAL
+  if (score >= 7) {
+    setDoctor('doctor-final.png');
+  } else {
+    setDoctor('doctor-sad.png');
+  }
+
+  show('result');
+}
+
 
 function restart() {
-  current = 0;
-  score = 0;
-  showScreen("start");
-}
-
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+  show('intro');
 }

@@ -1,0 +1,152 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== FUNDO GLOBAL ===== */
+body {
+    height: 100vh;
+    background: url("/assets/fundo-quiz.png") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Camada escura por cima do fundo */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 10, 40, 0.75);
+    backdrop-filter: blur(3px);
+    z-index: 0;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 800px;
+    background: rgba(10, 25, 80, 0.85);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0, 150, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #00c3ff;
+}
+
+/* ===== BOTÃO INICIAR (ESTILO DOURADO) ===== */
+.btn-iniciar {
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    color: #3a2500;
+
+    background: linear-gradient(180deg, #ffd700, #ffb300);
+    box-shadow:
+        0 5px 0 #c28f00,
+        0 0 20px rgba(255, 215, 0, 0.6);
+
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-iniciar:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 0 #c28f00,
+        0 0 30px rgba(255, 215, 0, 0.9);
+}
+
+.btn-iniciar:active {
+    transform: translateY(2px);
+    box-shadow:
+        0 3px 0 #c28f00,
+        0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+/* ===== BOTÕES VERDADEIRO / FALSO ===== */
+.btn {
+    width: 200px;
+    padding: 12px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-verdadeiro {
+    background: linear-gradient(180deg, #00c853, #009624);
+    color: white;
+    box-shadow: 0 4px 0 #006400;
+}
+
+.btn-falso {
+    background: linear-gradient(180deg, #ff5252, #c62828);
+    color: white;
+    box-shadow: 0 4px 0 #8e0000;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* ===== TEXTO DA PERGUNTA ===== */
+.pergunta {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+/* ===== RESPOSTA (ACERTO/ERRO) ===== */
+.resultado {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.correto {
+    color: #00ff99;
+}
+
+.errado {
+    color: #ff5252;
+}
+
+/* ===== TEXTO EXPLICAÇÃO ===== */
+.explicacao {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* ===== BOTÃO PRÓXIMO ===== */
+.btn-proximo {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    background: linear-gradient(180deg, #00b0ff, #0066ff);
+    color: white;
+    box-shadow: 0 4px 0 #003c8f;
+}
